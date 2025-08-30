@@ -195,9 +195,9 @@ class CloudWatchLogsToS3Exporter:
             )
             
             task_id = response['taskId']
-            logger.info(f"✅ Created export task {task_id} for {log_group_name}")
-            logger.info(f"📁 Destination: s3://{self.s3_bucket}/{s3_prefix}")
-            logger.info(f"📊 Exporting {len(streams)} streams")
+            logger.info(f"Created export task {task_id} for {log_group_name}")
+            logger.info(f"Destination: s3://{self.s3_bucket}/{s3_prefix}")
+            logger.info(f"Exporting {len(streams)} streams")
             
             return task_id
             
@@ -205,14 +205,14 @@ class CloudWatchLogsToS3Exporter:
             error_code = e.response['Error']['Code']
             
             if error_code == 'LimitExceededException':
-                logger.warning(f"⚠️  Export task limit exceeded for {log_group_name}. "
+                logger.warning(f"Export task limit exceeded for {log_group_name}. "
                              "Will retry in next execution.")
             elif error_code == 'ResourceAlreadyExistsException':
-                logger.warning(f"⚠️  Export task already exists for {log_group_name}")
+                logger.warning(f"Export task already exists for {log_group_name}")
             elif error_code == 'InvalidParameterException':
-                logger.error(f"❌ Invalid parameters for {log_group_name}: {e}")
+                logger.error(f"Invalid parameters for {log_group_name}: {e}")
             else:
-                logger.error(f"❌ Error creating export task for {log_group_name}: {e}")
+                logger.error(f"Error creating export task for {log_group_name}: {e}")
             
             return None
     
@@ -265,18 +265,18 @@ class CloudWatchLogsToS3Exporter:
             logger.warning("No log groups found to process")
             return results
         
-        logger.info(f"🚀 Starting processing of {len(log_groups)} log groups")
+        logger.info(f"Starting processing of {len(log_groups)} log groups")
         
         for i, log_group_name in enumerate(log_groups, 1):
             try:
-                logger.info(f"📋 Processing log group {i}/{len(log_groups)}: {log_group_name}")
+                logger.info(f"Processing log group {i}/{len(log_groups)}: {log_group_name}")
                 
                 # Get streams older than threshold
                 streams_to_export = self.get_log_streams_to_export(log_group_name)
                 results['total_streams_processed'] += len(streams_to_export)
                 
                 if not streams_to_export:
-                    logger.info(f"⏭️  No old streams found in {log_group_name}")
+                    logger.info(f"No old streams found in {log_group_name}")
                     results['skipped_log_groups'] += 1
                     results['processed_log_groups'] += 1
                     continue
@@ -299,7 +299,7 @@ class CloudWatchLogsToS3Exporter:
                 
             except Exception as e:
                 error_msg = f"Error processing log group {log_group_name}: {str(e)}"
-                logger.error(f"❌ {error_msg}")
+                logger.error(f"{error_msg}")
                 results['errors'].append(error_msg)
         
         # Calculate processing duration
@@ -309,8 +309,8 @@ class CloudWatchLogsToS3Exporter:
         results['duration_seconds'] = duration
         
         # Log summary
-        logger.info(f"✨ Processing completed in {duration:.2f} seconds")
-        logger.info(f"📊 Summary: {results['processed_log_groups']} processed, "
+        logger.info(f"Processing completed in {duration:.2f} seconds")
+        logger.info(f"Summary: {results['processed_log_groups']} processed, "
                    f"{results['created_export_tasks']} exported, "
                    f"{results['skipped_log_groups']} skipped, "
                    f"{len(results['errors'])} errors")
@@ -376,12 +376,12 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             }
         }
         
-        logger.info("🎉 Lambda execution completed successfully")
+        logger.info("Lambda execution completed successfully")
         return response
         
     except Exception as e:
         error_msg = f"Lambda execution failed: {str(e)}"
-        logger.error(f"💥 {error_msg}", exc_info=True)
+        logger.error(f"{error_msg}", exc_info=True)
         
         return {
             'statusCode': 500,

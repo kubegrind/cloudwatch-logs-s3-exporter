@@ -7,7 +7,7 @@
 
 A professional AWS Lambda function with Terraform infrastructure that automatically exports CloudWatch log groups to S3 with configurable retention policies and organized folder structures.
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
@@ -31,17 +31,17 @@ s3://bucket/
     └── 2024-08-30_18-30-00/
 ```
 
-## ✨ Features
+## Features
 
-- **🚀 Automated Export**: Automatically exports CloudWatch logs older than configurable threshold
-- **📁 Organized Storage**: Creates S3 folder structure based on log group names
-- **⚙️ Flexible Configuration**: Support for single/multiple log groups or all log groups
-- **🔒 Security First**: Least privilege IAM policies and secure S3 bucket configuration
-- **📊 Monitoring**: Comprehensive logging and error tracking
-- **⏰ Scheduled Execution**: Optional EventBridge scheduling for automated runs
-- **🏗️ Infrastructure as Code**: Complete Terraform configuration
+- **Automated Export**: Automatically exports CloudWatch logs older than configurable threshold
+- **Organized Storage**: Creates S3 folder structure based on log group names
+- **Flexible Configuration**: Support for single/multiple log groups or all log groups
+- **Security First**: Least privilege IAM policies and secure S3 bucket configuration
+- **Monitoring**: Comprehensive logging and error tracking
+- **Scheduled Execution**: Optional EventBridge scheduling for automated runs
+- **Infrastructure as Code**: Complete Terraform configuration
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -52,7 +52,7 @@ s3://bucket/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/muhammadarslan-techsol/cloudwatch-logs-s3-exporter.git
+git clone https://github.com/kubegrind/cloudwatch-logs-s3-exporter.git
 cd cloudwatch-logs-s3-exporter
 ```
 
@@ -88,7 +88,7 @@ aws lambda invoke \
   response.json
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Terraform Variables
 
@@ -129,7 +129,7 @@ aws lambda invoke \
 }
 ```
 
-## 📊 Response Format
+## Response Format
 
 ```json
 {
@@ -155,7 +155,7 @@ aws lambda invoke \
 }
 ```
 
-## 🔧 Advanced Configuration
+## Advanced Configuration
 
 ### Custom IAM Policies
 
@@ -207,7 +207,7 @@ lifecycle_rule {
 }
 ```
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -247,7 +247,7 @@ Monitor the function through:
 - **CloudWatch Metrics**: Lambda function metrics
 - **S3 Access Logs**: Enable S3 access logging for audit trails
 
-## 💰 Cost Optimization
+## Cost Optimization
 
 ### S3 Storage Classes
 
@@ -263,7 +263,7 @@ Configure appropriate storage classes based on access patterns:
 - **Timeout**: Set based on largest log group size
 - **Execution Frequency**: Balance between cost and storage requirements
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -271,7 +271,7 @@ Configure appropriate storage classes based on access patterns:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📋 Requirements
+## Requirements
 
 ### AWS Permissions
 
@@ -300,23 +300,23 @@ Minimum IAM permissions required for deployment:
 }
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - AWS Documentation for CloudWatch Logs Export API
 - Terraform AWS Provider documentation
 - Python boto3 library
 
-## 📞 Support
+## Support
 
 If you encounter any issues or have questions:
 
-1. Check the [Troubleshooting](#-troubleshooting) section
-2. Search [existing issues](https://github.com/muhammadarslan-techsol/cloudwatch-logs-s3-exporter/issues)
-3. Create a [new issue](https://github.com/muhammadarslan-techsol/cloudwatch-logs-s3-exporter/issues/new)
+1. Check the [Troubleshooting](#troubleshooting) section
+2. Search [existing issues](https://github.com/kubegrind/cloudwatch-logs-s3-exporter/issues)
+3. Create a [new issue](https://github.com/kubegrind/cloudwatch-logs-s3-exporter/issues/new)
 
 ---
 
